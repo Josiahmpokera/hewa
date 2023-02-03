@@ -8,27 +8,33 @@ import 'dart:async';
 import 'dart:convert';
 
 class Dataa extends StatefulWidget {
+
   String reg;
 
-  Dataa({super.key, required this.reg});
+  Dataa({ required this.reg, super.key,});
 
   String url =
       ("https://api.openweathermap.org/data/2.5/weather?q=Dodoma&appid=acece3914bff7be493968d98f6a4420e");
 
   // String nnn = ("aksjdkas"  + reg);
 
+  String namme = ("Hello wordl");
+
   Future<Regions> getRegions() async {
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
       print("Data is Here");
+      print(reg);
       return Regions.fromJson(jsonDecode(response.body));
+
     } else {
       print("!!!!!!!!!!!!!!!!!!!!!!");
       print(reg);
       throw Exception("Something is wrong");
     }
   }
+
 
   @override
   State<StatefulWidget> createState() {
@@ -38,6 +44,7 @@ class Dataa extends StatefulWidget {
 }
 
 class Result extends StatefulWidget {
+
   static String rrearch = "";
 
   Result({super.key, required String rearch});
@@ -55,12 +62,13 @@ class _ResultState extends State<Result> {
 
   DateTime now = new DateTime(DateTime.now().year);
 
-  DateTime day = new DateTime.now().day as DateTime;
-
   @override
   void initState() {
     super.initState();
     futureRegion = getD.getRegions();
+    print("00000000000000000000000000000000000000");
+    print(Result.rrearch);
+
   }
 
   @override
