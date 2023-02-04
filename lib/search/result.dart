@@ -10,7 +10,6 @@ import 'dart:convert';
 class Dataa extends StatefulWidget {
 
   String reg;
-
   Dataa({ required this.reg, super.key,});
 
   String url =
