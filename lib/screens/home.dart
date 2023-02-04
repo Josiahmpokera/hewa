@@ -51,7 +51,17 @@ class _HomeState extends State<Home> {
           child: FutureBuilder<Weather>(
         future: futureWeather,
         builder: ((context, snapshot) {
+
+          void fToC(fah){
+            final fal = fah;
+            final ff = (fal - 32) * 5 /9;
+
+          }
+
           if (snapshot.hasData) {
+
+            fToC(snapshot.data!.main.temp);
+
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
