@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Signika'),
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Lato'),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }

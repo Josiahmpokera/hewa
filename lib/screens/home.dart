@@ -99,7 +99,7 @@ class _HomeState extends State<Home> {
                     Stack(
                       children: [
                          Text(
-                          mm.toString(),
+                          mm.toString().split('.')[0],
                           style: const TextStyle(
                             fontSize: 100,
                             color: Colors.white,
