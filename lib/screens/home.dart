@@ -52,15 +52,16 @@ class _HomeState extends State<Home> {
         future: futureWeather,
         builder: ((context, snapshot) {
 
-          void fToC(fah){
+           fToC(fah){
             final fal = fah;
             final ff = (fal - 32) * 5 /9;
-
+            return ff;
           }
 
-          if (snapshot.hasData) {
+           final mm = fToC(snapshot.data!.main.temp);
 
-            fToC(snapshot.data!.main.temp);
+           if (snapshot.hasData) {
+
 
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -97,9 +98,9 @@ class _HomeState extends State<Home> {
                   children: [
                     Stack(
                       children: [
-                        const Text(
-                          "27",
-                          style: TextStyle(
+                         Text(
+                          mm.toString(),
+                          style: const TextStyle(
                             fontSize: 100,
                             color: Colors.white,
                             fontWeight: FontWeight.w800,
