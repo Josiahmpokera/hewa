@@ -1,16 +1,35 @@
-# hewa
-
-A new Flutter project.
+# Hewa
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+#### Screen shot
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+**Instruction for Installation**
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+### Installation
+
+``` bash
+$  dart --no-sound-null-safety run
+$  flutter run --no-sound-null-safety
+```
+
+I have not upgraded my dart so it keeps the null value safety
+
+## What's included
+
+```
+hewa
+├── lib/                         # project root
+|── assets/
+|      ├── apk/                 # Build APK file
+|      ├── font/                # font used in application
+│      └── icons/               # Icons used
+│
+├── hewa.iml
+├── README.md
+└── Pubspec.yaml.json
+```
+
+

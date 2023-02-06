@@ -3,9 +3,15 @@ import 'package:http/http.dart' as http;
 import '../model.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 String url =
     ("https://api.openweathermap.org/data/2.5/weather?lat=-6.8160837&lon=39.2803583&appid=acece3914bff7be493968d98f6a4420e");
+
+DateTime now = DateTime.now();
+
+
+
 
 // make the Data from the Internet
 Future<Weather> getWeather() async {
@@ -38,8 +44,17 @@ class _HomeState extends State<Home> {
     futureWeather = getWeather();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+
+    DateTime now = DateTime.now();
+
+    String formattedDate = DateFormat.yMMMEd().format(now);
+
+    String timeNow = DateFormat.Hm().format(now);
+
     return Container(
       constraints: const BoxConstraints.expand(),
       decoration: const BoxDecoration(
@@ -137,7 +152,7 @@ class _HomeState extends State<Home> {
                           width: 07,
                         ),
                         Text(
-                          "28 °C",
+                          mm.toString().split('.')[0],
                           style: TextStyle(color: Colors.amber[800]),
                         )
                       ],
@@ -145,9 +160,9 @@ class _HomeState extends State<Home> {
                     const SizedBox(
                       height: 06,
                     ),
-                    const Text(
-                      "Cloudy",
-                      style: TextStyle(color: Colors.white),
+                     Text(
+                      snapshot.data!.weather[0].main,
+                      style: const TextStyle(color: Colors.white),
                     )
                   ],
                 ),
@@ -170,7 +185,7 @@ class _HomeState extends State<Home> {
                       style: TextStyle(color: Colors.white),
                     ),
                     trailing: Text(
-                      snapshot.data!.wind.speed.toString() + "km/h",
+                      "${snapshot.data!.wind.speed}km/h",
                       style: const TextStyle(color: Colors.white),
                     ),
                   ),
@@ -180,18 +195,18 @@ class _HomeState extends State<Home> {
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
-                  child: const ListTile(
-                    leading: Icon(
+                  child:  ListTile(
+                    leading: const Icon(
                       Icons.calendar_month_outlined,
                       color: Colors.white,
                     ),
                     title: Text(
-                      "Tuesday, 04 Oct 2022",
-                      style: TextStyle(color: Colors.white),
+                      formattedDate,
+                      style: const TextStyle(color: Colors.white),
                     ),
-                    trailing: Text(
-                      "17:00",
-                      style: TextStyle(color: Colors.white),
+                    trailing:  Text(
+                      timeNow,
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 ),

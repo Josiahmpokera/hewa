@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:intl/intl.dart';
 import '../modal/search_modal.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -15,16 +16,24 @@ class Dataa extends StatefulWidget {
   String url =
       ("https://api.openweathermap.org/data/2.5/weather?q=Dodoma&appid=acece3914bff7be493968d98f6a4420e");
 
-  // String nnn = ("aksjdkas"  + reg);
+  //Make the Function to get the value of the search
 
-  String namme = ("Hello wordl");
+  String getValue(theValue){
+    final newValue = reg;
+    return newValue;
+  }
+
 
   Future<Regions> getRegions() async {
+
+    final newName = getValue(reg);
+
+
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
       print("Data is Here");
-      print(reg);
+      print(newName);
       return Regions.fromJson(jsonDecode(response.body));
 
     } else {
@@ -44,11 +53,14 @@ class Dataa extends StatefulWidget {
 
 class Result extends StatefulWidget {
 
-  static String rrearch = "";
+   String search;
 
-  Result({super.key, required String rearch});
+  Result({super.key, required this.search});
 
-  String nana = ("sdfsdf" + rrearch);
+   makeD(){
+    final newData = search;
+    return newData;
+  }
 
   @override
   State<Result> createState() => _ResultState();
@@ -59,19 +71,25 @@ class _ResultState extends State<Result> {
 
   final Dataa getD = new Dataa(reg: "");
 
-  DateTime now = new DateTime(DateTime.now().year);
+
 
   @override
   void initState() {
     super.initState();
     futureRegion = getD.getRegions();
-    print("00000000000000000000000000000000000000");
-    print(Result.rrearch);
+
 
   }
 
   @override
   Widget build(BuildContext context) {
+
+    DateTime now = DateTime.now();
+
+    String formattedDate = DateFormat.yMMMEd().format(now);
+
+    String timeNow = DateFormat.Hm().format(now);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -94,6 +112,15 @@ class _ResultState extends State<Result> {
         child: FutureBuilder(
           future: futureRegion,
           builder: ((context, snapshot) {
+
+            fToC(fah){
+              final fal = fah;
+              final ff = (fal - 32) * 5 /9;
+              return ff;
+            }
+
+            final mm = fToC(snapshot.data!.main.temp);
+
             if (snapshot.hasData) {
               print("Data is available");
               return Center(
@@ -112,7 +139,7 @@ class _ResultState extends State<Result> {
                         ),
                         Text(
                           snapshot.data!.name,
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: const TextStyle(color: Colors.white, fontSize: 20),
                         )
                       ],
                     ),
@@ -126,7 +153,7 @@ class _ResultState extends State<Result> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "$now",
+                        formattedDate,
                         style: const TextStyle(
                             fontSize: 13,
                             color: Colors.white,
@@ -148,7 +175,7 @@ class _ResultState extends State<Result> {
                         Stack(
                           children: [
                             Text(
-                              "${snapshot.data!.main.temp}°",
+                              "$mm°".toString().split('.')[0],
                               style: const TextStyle(
                                   fontSize: 90,
                                   fontWeight: FontWeight.w800,
@@ -171,7 +198,7 @@ class _ResultState extends State<Result> {
                     ),
                   ),
 
-                  // Another Rain VIew COntainer
+                  // Another Rain VIew Container
                   const SizedBox(
                     height: 15,
                   ),
@@ -214,14 +241,14 @@ class _ResultState extends State<Result> {
                               ),
                               Text(
                                 snapshot.data!.main.humidity.toString(),
-                                style: TextStyle(fontSize: 20),
+                                style: const TextStyle(fontSize: 20),
                               ),
                               const Text("Humidity"),
                             ],
                           ),
                         ),
 
-                        // THird
+                        // Third
                         Container(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -232,7 +259,7 @@ class _ResultState extends State<Result> {
                               ),
                               Text(
                                 "${snapshot.data!.wind.speed} km/h",
-                                style: TextStyle(fontSize: 20),
+                                style: const TextStyle(fontSize: 20),
                               ),
                               const Text("Wind"),
                             ],

@@ -4,9 +4,12 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:hewa/search/result.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
+
+
 
   @override
   State<Search> createState() => _SearchState();
@@ -24,7 +27,18 @@ void validateForm() {
   }
 }
 
+
 class _SearchState extends State<Search> {
+
+  @override
+  void initState() {
+    super.initState();
+    // TODO: implement initState
+    final superData = _searchCOntroller.text;
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -82,7 +96,7 @@ class _SearchState extends State<Search> {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (_) {
                               Dataa(reg: _searchCOntroller.text);
-                              return Result(rearch: _searchCOntroller.text);
+                              return Result(search: _searchCOntroller.text);
                             }));
                           },
                           child: Container(
@@ -107,6 +121,8 @@ class _SearchState extends State<Search> {
                                 ],
                               )),
                         )),
+
+                    Text(_searchCOntroller.text),
                   ],
                 ))
           ],

@@ -18,6 +18,21 @@ class _NavigationScreenState extends State<NavigationScreen> {
           fit: BoxFit.cover
         ),
       ),
+      child: ListView(
+        children: [
+
+
+        //  The First Container
+          Container(
+            margin: const EdgeInsets.all(10),
+            child: Row(
+              children: [
+
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

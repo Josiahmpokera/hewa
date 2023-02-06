@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hewa/screens/home.dart';
+import 'package:hewa/screens/navigator.dart';
 import 'package:hewa/screens/search.dart';
 import 'package:http/http.dart' as http;
 import './model.dart';
@@ -71,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static const List<Widget> _pages = <Widget>[
     Home(),
     Search(),
-    Text("Page Three"),
+    NavigationScreen(),
   ];
 
   @override
